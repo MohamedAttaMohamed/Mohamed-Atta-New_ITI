@@ -1,0 +1,26 @@
+# FastAPI Backend Architecture and API Design
+
+## 1. Overview of FastAPI Backend Design
+FastAPI is a modern, high-performance web framework for building APIs with Python 3.10+ based on standard Python type hints. In a RAG application, FastAPI acts as the orchestrator between frontends (such as Streamlit or Gradio), vector databases (ChromaDB), and local LLM inference engines (Ollama).
+
+## 2. Startup Lifespan and Resource Loading
+To ensure maximum performance and low latency, heavy resources such as the vector store connection and embedding models must be initialized ONCE during application startup using FastAPI's `@asynccontextmanager` lifespan handler:
+
+```python
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Initialize logger and load persisted Chroma collection into memory once
+    configure_logging()
+    load_vector_store()
+    yield
+```
+
+Loading vector stores on every HTTP request creates severe bottlenecks and should strictly be avoided.
+
+## 3. Endpoints and Schemas
+The backend exposes two main HTTP endpoints:
+- `GET /health`: A lightweight status endpoint returning `{"status": "ok"}` for monitoring and startup checks.
+- `POST /query`: Accepts a JSON payload containing `question: str` (validated via Pydantic `QueryRequest`). It triggers the retrieval service, builds a grounded prompt, queries the LLM service, and returns `QueryResponse` containing `answer: str` and `sources: list[str]`.
+
+## 4. CORS Middleware and Security
+Cross-Origin Resource Sharing (CORS) is enabled via `CORSMiddleware` to allow requests from the frontend origin (e.g., `http://localhost:8501`). Environment settings are managed cleanly using `pydantic-settings` to load configurations from `.env` files.
