@@ -1,0 +1,42 @@
+# Unit IV: Sorting Algorithms and Efficiency Analysis
+
+## 1. Overview of Sorting
+Sorting refers to the operation of arranging data items in a specific order (ascending or descending).
+- **Stable vs Unstable Sort**: A sort is **stable** if elements with equal key values retain their relative relative input order after sorting.
+- **Internal vs External Sort**: **Internal sort** takes place entirely in main memory. **External sort** handles large datasets stored in auxiliary storage (disks/tapes).
+
+## 2. Exchange Sorts
+### Bubble Sort
+- Compares and swaps adjacent neighbor elements $(k, k+1)$ from left to right across $n-1$ passes.
+- **Time Complexity**: Best Case $O(n)$, Average and Worst Case $O(n^2)$. Space Complexity $O(1)$. Stable sort.
+
+### Quick Sort (C.A.R. Hoare)
+- Divide-and-conquer algorithm. Selects a **pivot** element, partitions the array into elements $\le pivot$ (left) and $\ge pivot$ (right), and recursively sorts both sub-arrays.
+- **Time Complexity**: Average Case $O(n \log n)$, Worst Case $O(n^2)$ (when input is already sorted with naive pivot choice). Space Complexity $O(\log n)$. Unstable sort.
+
+## 3. Selection & Tree Sorts
+### Selection Sort
+- Finds the minimum element from the unsorted sub-array and swaps it into its correct position at the front.
+- **Time Complexity**: $O(n^2)$ across all cases. Space Complexity $O(1)$. Unstable sort.
+
+### Heap Sort
+- Builds a Max-Heap array structure ($a[i] \ge a[2i+1]$ and $a[i] \ge a[2i+2]$). Repeatedly extracts the maximum root element and calls `sift()` to restore heap order.
+- **Time Complexity**: $O(n \log n)$ worst-case. Space Complexity $O(1)$. Unstable sort.
+
+## 4. Insertion & Shell Sorts
+### Insertion Sort
+- Builds the sorted array one item at a time by inserting each new element into its proper position within the existing sorted sub-array.
+- **Time Complexity**: Best Case $O(n)$ (nearly sorted data), Average/Worst Case $O(n^2)$. Stable sort.
+
+### Shell Sort
+- Generalization of insertion sort that compares and sorts elements $h$ positions apart, gradually decreasing $h$ to 1 (Diminishing Increment sort).
+- **Time Complexity**: $O(n^{1.3})$ to $O(n^{1.5})$ depending on increment sequence.
+
+## 5. Merge Sort
+- Divide-and-conquer algorithm. Recursively splits array into halves, sorts them, and merges the two sorted halves using an auxiliary buffer array.
+- **Time Complexity**: $O(n \log n)$ across Best, Average, and Worst cases.
+- **Space Complexity**: $O(n)$ extra memory required. Stable sort.
+
+## 6. Bucket & Radix Sorts (Non-Comparison Sorts)
+- **Bucket Sort**: Distributes elements into $m$ buckets/counters. Runs in linear time $O(n + m)$ when elements are uniformly distributed over a fixed range.
+- **Radix Sort**: Processes numbers digit-by-digit from least significant digit (LSD) to most significant digit (MSD) using bin collection. Runs in $O(n \cdot k)$ time where $k$ is number of digits.
