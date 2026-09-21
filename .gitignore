@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Env files
+.env
+*.env
+!.env.example
+
+# Logs
+*.log
+
+# Raw data / vector store (large — see README for how to obtain/rebuild)
+data/raw/
+backend/data/vector_store/*
+!backend/data/vector_store/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
