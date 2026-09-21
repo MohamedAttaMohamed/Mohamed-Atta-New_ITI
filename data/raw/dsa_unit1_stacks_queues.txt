@@ -1,0 +1,30 @@
+# Unit I: Data Structures and Algorithms - Stacks, Queues, and Expressions
+
+## 1. Introduction to Data Structures
+A Data Structure refers to an organized way of arrangement of data, related to each other in memory, which allows the program to handle the data in an efficient way. 
+Data Structure = Data Organization + Allowed Operations.
+Data structures can be classified into:
+- **Primitive Data Structures**: Built-in machine level data types such as Integer, Float, Boolean, and Character.
+- **Simple Data Structures**: Built from primitives, such as Strings, Arrays, and Records.
+- **Compound Data Structures**: Classified into:
+  - **Linear Data Structures**: Elements form a sequential order (Arrays, Stacks, Queues, Linked Lists).
+  - **Non-Linear Data Structures**: Hierarchical or networked arrangement (Trees, Graphs).
+
+## 2. Stacks (LIFO Principle)
+A Stack is an abstract linear data type in which items are inserted and deleted at only one end, called the **top of the stack**.
+- **LIFO (Last-In, First-Out)**: The last item added to the stack is the first item to be retrieved.
+- **Primitive Stack Operations**:
+  - `Push(item, stack)`: Adds a data item onto the top of the stack. Checks for **Stack Overflow** (when top >= MAXSTACK).
+  - `Pop(stack)`: Removes and returns the data item from the top of the stack. Checks for **Stack Underflow** (when top <= 0).
+  - `IsEmpty(stack)`: Returns true if the stack contains no elements.
+  - `IsFull(stack)`: Returns true if the stack capacity is exhausted.
+- **Time and Space Complexity**: Stack operations (Push, Pop, Top) operate in $O(1)$ constant time. Space complexity is $O(n)$.
+
+## 3. Applications of Stack
+1. **Recursion & Function Call Tracking**: Stacks manage activation records and return addresses during nested and recursive function calls.
+2. **Expression Conversion and Evaluation**: Stacks convert Infix expressions to Postfix (Reverse Polish Notation / RPN) or Prefix, and evaluate RPN expressions efficiently in $O(n)$ time without requiring parentheses.
+3. **Backtracking Algorithms**: Used in maze traversal (Rat-in-a-Maze) and text editor undo/redo operations.
+
+## 4. Queues (FIFO Principle)
+A Queue is a linear data structure in which items are inserted at one end (**rear**) and retrieved/deleted from the other end (**front**).
+- **FIFO (First-In, First-Out)**: The first item added to the queue is the first item to be processed.
