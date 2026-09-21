@@ -1,0 +1,36 @@
+# Unit III: Trees, Binary Trees, and Huffman Coding
+
+## 1. Trees and Hierarchical Data Structures
+A Tree is a non-linear hierarchical data structure consisting of nodes connected by edges. 
+- **Root**: The topmost node of the tree hierarchy.
+- **Leaf (Terminal Node)**: A node with no children (degree = 0).
+- **Subtree**: A tree structure formed under a parent node.
+- **Degree of a Node**: The number of subtrees originating from that node.
+
+## 2. Binary Trees
+A Binary Tree is a finite set of nodes that is either empty or consists of a root node and two disjoint subtrees called the **Left Subtree** ($T_L$) and **Right Subtree** ($T_R$).
+- **Properties**:
+  - A binary tree with $N$ internal nodes contains $N+1$ external (leaf) nodes.
+  - The maximum number of nodes at level $k$ is $2^k$.
+  - The height of a balanced binary tree with $N$ nodes is $O(\log N)$.
+- **Binary Tree Traversals**:
+  1. **Inorder (Left-Root-Right)**: Visits left subtree, root, then right subtree. Produces sorted key order for Binary Search Trees.
+  2. **Preorder (Root-Left-Right)**: Visits root first, then left and right subtrees (used in depth-first search).
+  3. **Postorder (Left-Right-Root)**: Visits subtrees first, then root (used in bottom-up expression evaluation and deleting trees).
+  4. **Level-Order (Breadth-First Search)**: Visits nodes level by level from left to right using a queue.
+
+## 3. Binary Search Trees (BST)
+A Binary Search Tree is a binary tree where for every node $X$:
+- All keys in the left subtree of $X$ are strictly less than $X.key$.
+- All keys in the right subtree of $X$ are strictly greater than $X.key$.
+- Search, Insertion, and Deletion run in $O(\log N)$ average time for balanced BSTs, deteriorating to $O(N)$ in degenerate unbalanced trees.
+
+## 4. Huffman Coding Algorithm
+The Huffman Algorithm is a greedy text compression algorithm that constructs an optimal prefix-free variable-length binary encoding tree based on character frequencies:
+- **Encoding Procedure**:
+  1. Count frequency of occurrence for each symbol.
+  2. Create leaf nodes for each symbol and place them in a min-heap priority queue.
+  3. Repeatedly combine the two subtrees with the lowest weights/frequencies into a new parent node with weight equal to their sum.
+  4. Repeat until a single binary tree (the Huffman Tree) remains.
+- **Time Complexity**: $O(N \log N)$ where $N$ is the number of distinct characters.
+- **Decoding**: Traverses the tree from root to leaf following binary bit bits ($0$ for left, $1$ for right).
