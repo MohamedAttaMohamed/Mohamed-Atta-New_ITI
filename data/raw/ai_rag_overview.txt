@@ -1,0 +1,16 @@
+# Retrieval-Augmented Generation (RAG) Architecture Overview
+
+## 1. Introduction to RAG
+Retrieval-Augmented Generation (RAG) is an artificial intelligence framework that enhances Large Language Model (LLM) responses by retrieving relevant facts from an external authoritative knowledge base before generating a response. Standard LLMs are prone to hallucinating facts or lacking domain-specific, private, or up-to-date knowledge. RAG solves this problem by connecting the generative power of LLMs with specialized document stores.
+
+## 2. Key Components of a RAG Pipeline
+A complete end-to-end RAG pipeline consists of five major phases:
+
+1. **Document Ingestion and Parsing**: Raw source documents in formats such as PDF, TXT, HTML, or Markdown are collected and inspected for extractable text content.
+2. **Text Chunking**: Source documents are split into smaller segments (chunks) using fixed-size windowing with overlap or semantic section-based boundary splitting. Chunk sizes typically range from 250 to 1000 characters with a 10% to 20% overlap to preserve contextual continuity.
+3. **Embedding Generation**: Text chunks are processed by an embedding model (e.g., SentenceTransformers `all-MiniLM-L6-v2`) which maps each chunk into a high-dimensional dense vector space representation.
+4. **Vector Database Storage**: Dense vector embeddings along with document metadata (such as file source, chunk index, and title) are persisted to a vector database like ChromaDB or FAISS.
+5. **Contextual Retrieval and Prompt Synthesis**: When a user submits a query, the query is embedded into the same vector space. The vector store performs similarity search (e.g., cosine similarity or Euclidean distance) to retrieve the top-K most relevant chunks. A grounded prompt template combines the retrieved context chunks with the user query, instructing the LLM to answer using ONLY the retrieved facts and cite the source documents.
+
+## 3. Benefits of Grounded Citation Generation
+By forcing the LLM to rely strictly on retrieved context, RAG dramatically reduces hallucinations, provides auditable source citations (showing exactly which document chunk supplied the information), and enables rapid domain updates without expensive model retraining.
